@@ -1,3 +1,6 @@
+"""
+  pywebview example
+"""
 import os
 import webview
 import pystray
@@ -37,15 +40,16 @@ def send_cmd_to_window(cmd):
     conn.parent.send(cmd)
 
 
-def quit_window(subprocess_handler):
+def quit_window(process_handler):
     icon.stop()
-    subprocess_handler.terminate()
+    process_handler.terminate()
 
 
 if __name__ == '__main__':
     conn.parent, conn.child = Pipe()
 
-    subprocess_handler = Process(target=webview_subprocess, args=(conn.parent, conn.child))
+    subprocess_handler = Process(
+        target=webview_subprocess, args=(conn.parent, conn.child))
     subprocess_handler.start()
 
     # Using window tray
