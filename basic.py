@@ -48,8 +48,7 @@ def quit_window(process_handler):
 if __name__ == '__main__':
   conn.parent, conn.child = Pipe()
 
-  subprocess_handler = Process(
-    target=webview_subprocess, args=(conn.parent, conn.child))
+  subprocess_handler = Process(target=webview_subprocess, args=(conn.parent, conn.child))
   subprocess_handler.start()
 
   # Using window tray
